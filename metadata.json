@@ -1,0 +1,6 @@
+{
+  "name": "ThermalPrint 58mm - Studio Cetak Nota Windows",
+  "description": "Aplikasi Windows untuk cetak nota transaksi printer thermal 58mm dengan dukungan auto-cut hardware, desain tata letak kustom, dan editor kasir.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

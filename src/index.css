@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+}
+
+/* Specific fonts for thermal receipts */
+.font-thermal-mono {
+  font-family: 'Space Mono', 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+.font-thermal-dot {
+  font-family: 'VT323', monospace;
+  letter-spacing: 0.5px;
+}
+
+.font-thermal-sans {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Custom scrollbars for desktop Windows app feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #171717;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #444444;
+}
+
+/* Thermal Paper Texture & Edge */
+.thermal-paper {
+  background: #fbfbf9;
+  color: #050505;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+.thermal-serration-top {
+  background-image: radial-gradient(circle at 10px -5px, transparent 12px, #fbfbf9 13px);
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+  height: 12px;
+}
+
+.thermal-serration-bottom {
+  background-image: radial-gradient(circle at 10px 15px, transparent 12px, #fbfbf9 13px);
+  background-size: 20px 20px;
+  background-repeat: repeat-x;
+  height: 12px;
+}
+
+/* PRINTING ENGINE SPECIFIC FOR 58mm / 80mm THERMAL ROLLS */
+@media print {
+  /* Set exact page dimensions for continuous thermal roll */
+  @page {
+    size: 58mm auto;
+    margin: 0mm !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    width: 58mm !important;
+    min-width: 58mm !important;
+    max-width: 58mm !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Hide entire UI app elements except the printable receipt */
+  .no-print, header, aside, .app-sidebar, .app-editor, .app-modal, .app-toolbar, nav {
+    display: none !important;
+  }
+
+  #thermal-receipt-printable {
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 58mm !important;
+    max-width: 58mm !important;
+    margin: 0 !important;
+    padding: 2mm 3mm !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    overflow: visible !important;
+  }
+
+  /* Prevent page breaks inside lines */
+  #thermal-receipt-printable * {
+    page-break-inside: avoid;
+    break-inside: avoid;
+    color: #000000 !important;
+  }
+}
